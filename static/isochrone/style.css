@@ -1,0 +1,45 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size:  16pt;
+}
+
+#main {
+    overflow: auto;
+    height: 100%
+    padding: 0;
+}
+
+#map {
+    width: 74%;
+    height: 100%;
+    margin: 0 auto;
+    float:right;
+}
+
+#menu {
+    width: 25%;
+    height: 100%;
+    float:left
+}
+
+#menu-part {
+    border: 1pt solid black;
+    padding: 2pt;
+    margin: 10pt;
+}
+
+#button {
+  color: #fff;
+  background-color: #4285f4;
+  text-shadow: -1px 1px #417cb8;
+  border: none;
+  font-size: 24pt;
+  padding: 3pt;
+  margin: 0 auto;
+}
+
+#centered {
+    text-align: center;
+}
