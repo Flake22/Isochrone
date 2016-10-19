@@ -9,11 +9,14 @@ def index(request):
 		try:
 			latitude = request.GET["latitude"]
 			longitude = request.GET["longitude"]
-			duration = request.GET["rangeInput"]
+			duration = request.GET["duration"]
 			travelMode = request.GET["travelMode"]
+			angles = request.GET["angles"]
+			tolerance = request.GET["tolerance"]
 
-			iso, htmltext = isochrone_computation.compute_isochrone(latitude, longitude, duration, travelMode)
+			iso, htmltext = isochrone_computation.compute_isochrone(latitude, longitude, duration, travelMode, angles, tolerance)
 			#call postgress
+
 			print htmltext
 			print iso
 

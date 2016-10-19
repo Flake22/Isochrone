@@ -14,11 +14,7 @@ import hashlib
 
 import key_getter as key
 
-
-tolerance=0.1
-angles=12
-
-def settings_sanity_check(latitude, longitude, dist, mode):
+def settings_sanity_check(latitude, longitude, dist, mode, angles, tolerance):
 	try:
 		# selected poin must have a float latitude and longitude
 		if not (isinstance(latitude, float) & isinstance(longitude, float)):
@@ -33,12 +29,12 @@ def settings_sanity_check(latitude, longitude, dist, mode):
 			raise Exception("access_type must be either 'driving' or 'walking'.")
 
 		#number_of_angles must be an integer
-		#if not isinstance(angles, int):
-		#    raise Exception('number_of_angles must be an int')
+		if not isinstance(angles, int):
+		   raise Exception('number_of_angles must be an int')
 
 		#tolerance must be a float
-		#if not isinstance(tolerance, float):
-		#    raise Exception("tolerance must be a number")
+		if not isinstance(tolerance, float):
+		   raise Exception("tolerance must be a number")
 	except Exception as e:
 		print e
 
@@ -260,7 +256,7 @@ def sort_points(iso, latitude, longitude):
 	sorted_iso = [point[1] for point in sorted_points]
 	return sorted_iso
 
-def get_isochrone(latitude, longitude, duration, mode):
+def get_isochrone(latitude, longitude, duration, mode, angles, tolerance):
 	# Make a radius list, one element for each angle,
 	#   whose elements will update until the isochrone is found
 	if mode=='walking':
@@ -360,26 +356,20 @@ def generate_isochrone_map(iso, latitude, longitude):
 	#print htmltext
 	return htmltext
 
-def compute_isochrone(latitude, longitude, duration, mode):
+def compute_isochrone(latitude, longitude, duration, mode, angles, tolerance):
 	#check whether input settings are valid
 	try:
 		latitude = float(latitude)
 		longitude = float(longitude)
 		duration = int(duration)
+		angles = int(angles)
+		tolerance = float(tolerance)
 	except Exception as e:
 		raise
 
-	settings_sanity_check(latitude, longitude, duration, mode)
+	settings_sanity_check(latitude, longitude, duration, mode, angles, tolerance)
 
 	#compute isochrone
-	iso = get_isochrone(latitude, longitude, duration, mode)
+	iso = get_isochrone(latitude, longitude, duration, mode, angles, tolerance)
 	htmltext = generate_isochrone_map(iso, latitude, longitude)
 	return iso, htmltext
-
-#latitude=46.0688241901922
-#longitude=11.133047105977312
-#duration=5
-#mode='walking'	
-#settings_sanity_check(latitude, longitude, duration, mode)
-#iso = get_isochrone(latitude, longitude, duration, mode)
-#generate_isochrone_map(iso, latitude, longitude)
