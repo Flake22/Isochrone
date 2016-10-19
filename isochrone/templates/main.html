@@ -1,0 +1,21 @@
+<html style="height: 100%; margin: 0; padding: 0;">
+    <head>
+        <title>Isochrone</title>
+        <link rel="shortcut icon" href="">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+    </head>
+    <body style="height: 100%; margin: 0; padding: 0;">
+	    <div id="main" style="height: 100%; margin: 0; padding: 0;">
+		    <div id="menu" style="width: 25%; height: 100%; float:left;">
+		        {% block 'menu' %}
+                {% endblock %}
+		    </div>
+
+			<div id="map" style="width: 74%; height: 100%; margin: 0 auto; float:right;"></div>
+		</div>
+
+        {% block 'body' %}
+        {% endblock %}
+    <body>
+</html>

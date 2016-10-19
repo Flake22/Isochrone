@@ -1,0 +1,53 @@
+<script>
+    var map;
+    var marker;
+
+    function get_country(latitude, longitude) {
+
+        //get country
+        
+        console.log(country);
+        return country;
+    }
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: {lat: 46.06525114662244, lng: 11.152153015136719 }
+        });
+
+        map.addListener('click', function(e) {
+            var coordinates = new google.maps.LatLng(e.latLng.lat(), e.latLng.lng());
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': coordinates }, function (results, status) {
+                var Items = results.length;
+                var countryNameCount = Items - 1;
+                country = results[countryNameCount].formatted_address;
+                console.log(country);
+
+                if (country=="Italy") {
+                    placeMarker(e.latLng);
+                    document.getElementById("latitude").value = e.latLng.lat();
+                    document.getElementById("longitude").value = e.latLng.lng();
+                    //window.alert( e.latLng.lat() + ', ' + e.latLng.lng() );
+                    //console.log( e.latLng.lat() + ', ' + e.latLng.lng() );
+                }
+                else
+                    window.alert( "Please select a location in Italy" );
+            });
+        });
+    }
+
+    function placeMarker(location) {
+        if ( marker ) {
+            marker.setPosition(location);
+        } else {
+            marker = new google.maps.Marker({
+                title: 'position',
+                position: location,
+                map: map
+            });
+        }
+    }
+
+</script>

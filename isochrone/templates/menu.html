@@ -1,0 +1,24 @@
+<form action="#" method="get">
+    <br>
+    <div>
+        <input type="text" name="latitude" id="latitude" value="empty" readonly="readonly">
+        <input type="text" name="longitude" id="longitude" value="empty" readonly="readonly">
+    </div>
+    <br>
+    <div>
+        Select travel duration [minutes]:
+        <input type="range" id="rangeInput" name="rangeInput" min="5" max="20" value="5" step="5" oninput="amount.value=rangeInput.value">                                                       
+        <output name="amount" id="amount" for="rangeInput" >5</output>
+    </div>
+    <div>
+        Select travel mode:
+        <input type="radio" name="travelMode" id="walking" value="walking" checked>
+        <label for="walking">Walking</label>
+        <input type="radio" name="travelMode" id="driving" value="driving">
+        <label for="driving">Driving</label>
+    </div>
+    <br>
+    <div>
+        <input type="submit" value="Calculate Isochrone" name="calculate">
+    </div>
+</form>

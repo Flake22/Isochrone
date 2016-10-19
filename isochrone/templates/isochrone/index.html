@@ -1,0 +1,10 @@
+{% extends 'main.html' %} 
+{% block 'menu' %}
+{% include menu %}
+{% endblock %}
+{% block 'body' %}
+{% include map %}
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap">
+</script>
+{% endblock %}
