@@ -25,7 +25,7 @@
                 country = results[countryNameCount].formatted_address;
                 console.log(country);
 
-                if (country=="Italy") {
+                if (country=="Italy" || country=="Italia") {
                     placeMarker(e.latLng);
                     document.getElementById("latitude").value = e.latLng.lat();
                     document.getElementById("longitude").value = e.latLng.lng();

@@ -1,0 +1,49 @@
+
+	<script>
+	function initialize() {
+	var mapOptions = {
+	zoom: 14,
+	center: new google.maps.LatLng(46.068228699,11.1239469051)
+	};
+
+	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+	var marker = new google.maps.Marker({
+	position: new google.maps.LatLng(46.068228699,11.1239469051),
+	map: map
+	});
+
+	var isochrone;
+
+	var isochroneCoords = [
+	new google.maps.LatLng(46.07137,11.12414), 
+new google.maps.LatLng(46.0708406,11.1258935), 
+new google.maps.LatLng(46.0696843,11.1276332), 
+new google.maps.LatLng(46.06826,11.1270335), 
+new google.maps.LatLng(46.066671,11.127654), 
+new google.maps.LatLng(46.066133,11.126457), 
+new google.maps.LatLng(46.0656939,11.1238923), 
+new google.maps.LatLng(46.0656443,11.1219469), 
+new google.maps.LatLng(46.0669399,11.1206736), 
+new google.maps.LatLng(46.0683236,11.1202276), 
+new google.maps.LatLng(46.0694475,11.1210856), 
+new google.maps.LatLng(46.0701929,11.1216729), 
+
+	];
+
+	isochrone = new google.maps.Polygon({
+	paths: isochroneCoords,
+	strokeColor: '#000',
+	strokeOpacity: 0.5,
+	strokeWeight: 1,
+	fillColor: '#000',
+	fillOpacity: 0.25
+	});
+
+	isochrone.setMap(map);
+
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+	
