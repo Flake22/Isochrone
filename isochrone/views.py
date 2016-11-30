@@ -1,8 +1,10 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+import os
+
 import isochrone_computation
 import key_getter
-import os
+import db_connection
 
 def index(request):
 	key = key_getter.get_key()
@@ -21,8 +23,17 @@ def index(request):
 			#get isochrone and its html versrion
 			iso, htmltext = isochrone_computation.compute_isochrone(latitude, longitude, duration, travelMode, angles, tolerance)
 			
-			#call postgress
+			#open connection with pgadming ad run query
+			try:
+				conn = db_connection.connect()
+				records = db_connection.executeQuery(query, connection)
 
+				#do something with records
+
+				#close connection
+				conn.close()
+			except Exception as e:
+				raise
 
 			print htmltext
 			print iso
