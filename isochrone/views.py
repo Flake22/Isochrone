@@ -22,30 +22,32 @@ def index(request):
 
 			#get isochrone and its html versrion
 			iso, htmltext = isochrone_computation.compute_isochrone(latitude, longitude, duration, travelMode, angles, tolerance)
+
+			print iso
 			
 			#open connection with pgadming ad run query
-			try:
-				conn = db_connection.connect()
-				records = db_connection.executeQuery(query, connection)
+			# try:
+			# 	conn = db_connection.connect()
+			# 	records = db_connection.executeQuery(iso, connection)
 
-				#do something with records
+			# 	#do something with records
 
-				#close connection
-				conn.close()
-			except Exception as e:
-				raise
+			# 	#close connection
+			# 	conn.close()
+			# except Exception as e:
+			# 	raise
 
-			print htmltext
-			print iso
+			# print htmltext
+			# print iso
 
-			try:
-				script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
-				rel_path = "templates/iso_map.html"
-				abs_file_path = os.path.join(script_dir, rel_path)
-				with open(abs_file_path, 'w+') as f:
-					f.write(htmltext)
-			except Exception as e:
-				print e
+			# try:
+			# 	script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
+			# 	rel_path = "templates/iso_map.html"
+			# 	abs_file_path = os.path.join(script_dir, rel_path)
+			# 	with open(abs_file_path, 'w+') as f:
+			# 		f.write(htmltext)
+			# except Exception as e:
+			# 	print e
 
 
 			#return HttpResponse("Hello world")
