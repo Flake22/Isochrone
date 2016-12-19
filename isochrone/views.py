@@ -37,8 +37,16 @@ def parse_query_results(res):
 
 	print age_and_sex, family_composition, commuters
 
+def print_to_file(rel_path, html):
+	script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
+	abs_file_path = os.path.join(script_dir, rel_path)
+	with open(abs_file_path, 'w+') as f:
+		f.write(html)
+
 def index(request):
 	key = key_getter.get_key()
+	map_file = 'map.html'
+	menu_file = 'menu.html'
 	if request.method == "GET":
 		try:
 			#checks whether isochrone has been requested
@@ -50,18 +58,7 @@ def index(request):
 			tolerance = request.GET["tolerance"]
 
 			#get isochrone and its html versrion
-			iso, htmltext = isochrone_computation.compute_isochrone(latitude, longitude, duration, travelMode, angles, tolerance)
-
-			#print htmltext to file	
-			try:
-				script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
-				rel_path = "templates/iso_map.html"
-				abs_file_path = os.path.join(script_dir, rel_path)
-				with open(abs_file_path, 'w+') as f:
-					f.write(htmltext)
-			except Exception as e:
-				print e
-				#return HttpResponse("Hello world")
+			iso, map_html = isochrone_computation.compute_isochrone(latitude, longitude, duration, travelMode, angles, tolerance)
 			
 			#open connection with pgadming ad run query
 			# try:
@@ -76,8 +73,19 @@ def index(request):
 			# except Exception as e:
 			# 	raise
 
-			#return HttpResponse("Hello world")
-			return render_to_response('isochrone/index.html', {'key' : key, 'map': "iso_map.html", 'main': "main.html", 'menu': "menu.html"})
+			#graphs_html = graphs_generator.generate_graphs(age_and_sex, family_composition, commuters)
+
+
+			#print html to file	
+			try:
+				print_to_file("templates/iso_map.html", map_html)
+				#print_to_file("templates/graphs.html", graphs_html)
+
+				map_file = 'iso_map.html'
+				#menu_file = 'graphs.html'
+			except Exception as e:
+				print e
+
 		except Exception:
 			pass
-	return render_to_response('isochrone/index.html', {'key' : key, 'map': "map.html", 'main': "main.html", 'menu': "menu.html"})
+	return render_to_response('isochrone/index.html', {'key' : key, 'map': map_file, 'main': "main.html", 'menu': menu_file})

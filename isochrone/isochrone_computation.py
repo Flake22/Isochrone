@@ -350,7 +350,7 @@ def generate_isochrone_map(iso, latitude, longitude):
 
 	}
 
-	google.maps.event.addDomListener(window, 'load', initialize);
+	google.maps.event.addDomListener(window, 'load', initMap);
 	</script>
 	"""
 	#print htmltext
