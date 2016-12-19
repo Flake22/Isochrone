@@ -11,29 +11,29 @@ def parse_query_results(res):
 	percentage = float(res[0])
 
 	#retrive population by age and sex
-	m1 =int(round(res[6]*percentage))						#men 0-29
-	m2 =int(round(res[7]*percentage))						#men 30-54
-	m3 =int(round(res[8]*percentage))						#men >=55
+	m1 =int(round(res[4]*percentage))						#men 0-29
+	m2 =int(round(res[5]*percentage))						#men 30-54
+	m3 =int(round(res[6]*percentage))						#men >=55
 	men = m1+m2+m3
 
-	w1 =int(round(res[3]*percentage))-m1					#women 0-29
-	w2 =int(round(res[4]*percentage))-m2					#women 30-54
-	w3 =int(round(res[5]*percentage))-m3					#women >=55
+	w1 =int(round(res[1]*percentage))-m1					#women 0-29
+	w2 =int(round(res[2]*percentage))-m2					#women 30-54
+	w3 =int(round(res[3]*percentage))-m3					#women >=55
 	women = (w1+w2+w3)
 
 	age_and_sex = [m1, m2, m2, w1, w2, w3, women, men]
 
 	#retrive family composition
-	family_composition=[int(round(res[10]*percentage)),		#families with 1 component
+	family_composition=[int(round(res[7]*percentage)),		#families with 1 component
+						int(round(res[8]*percentage)),		#families with 1 component
+						int(round(res[9]*percentage)),		#families with 1 component
+						int(round(res[10]*percentage)),		#families with 1 component
 						int(round(res[11]*percentage)),		#families with 1 component
-						int(round(res[12]*percentage)),		#families with 1 component
-						int(round(res[13]*percentage)),		#families with 1 component
-						int(round(res[14]*percentage)),		#families with 1 component
-						int(round(res[15]*percentage))]		#families with 1 component
+						int(round(res[12]*percentage))]		#families with 1 component
 
 	#retrive commuters
-	commuters=[int(round(res[16]*percentage)),				#within residence town
-						int(round(res[17]*percentage))]		#outside residence town
+	commuters=[int(round(res[13]*percentage)),				#within residence town
+						int(round(res[14]*percentage))]		#outside residence town
 
 	print age_and_sex, family_composition, commuters
 
