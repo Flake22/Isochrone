@@ -313,7 +313,7 @@ def generate_isochrone_map(iso, latitude, longitude):
 
 	htmltext = """
 	<script>
-	function initialize() {{
+	function initMap() {{
 	var mapOptions = {{
 	zoom: 14,
 	center: new google.maps.LatLng({0},{1})
