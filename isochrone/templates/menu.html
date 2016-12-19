@@ -1,42 +1,170 @@
 <form action="#" method="get">
     <br>
-    <h3>Coordinates</h3>
-    <div id="menu-part">
-        Latitude: 
-        <input type="text" name="latitude" id="latitude" value="empty" readonly="readonly">
-        <br>
-        Longitude:
-        <input type="text" name="longitude" id="longitude" value="empty" readonly="readonly">
-    </div>
+	
+	<!--Container for the Coordinates-->
+	<div class="container">
+	
+		<div class="row">
+			<div class="col-md-4">
+			
+				<div class="panel panel-default">
+				
+				<div class="panel-heading">
+				  <h4 class="panel-title">
+					Coordinates
+					  
+				  </h4>
+				</div>
+				
+				
+					<div id="menu-part">
+						Lat: 
+						<input type="text" name="latitude" id="latitude" value="empty" readonly="readonly">
+						<br>
+						Long:
+						<input type="text" name="longitude" id="longitude" value="empty" readonly="readonly">
+					</div>
+				</div>
+			</div>
+		</div>
+	
     <br>
-    <h3> General settings</h3>
-    <div id="menu-part">
-        <div>
-            Select travel duration [minutes]:
-            <input type="range" id="slider" name="duration" min="5" max="20" value="5" step="5" oninput="amount_duration.value=duration.value">
-            <output name="amount_duration" id="slider" for="duration" >5</output>
-        </div>
-        <div>
-            Select travel mode:
-            <input type="radio" name="travelMode" id="walking" value="walking" checked>
-            <label for="walking">Walking</label>
-            <input type="radio" name="travelMode" id="driving" value="driving">
-            <label for="driving">Driving</label>
-        </div>
-    </div>
-    <br>
-    <h3>Advanced settings</h3>
-    <div id="menu-part">
-        Select number of angles
-        <input type="range" id="angles" name="angles" min="12" max="48" value="12" step="12" oninput="amount_angles.value=angles.value">
-        <output name="amount_angles" id="amount_angles" for="angles">12</output>
-        <br>
-        Select tolerance
-        <input type="range" id="tolerance" name="tolerance" min="0.1" max="1.0" value="0.1" step="0.1" oninput="amount_tolerance.value=tolerance.value">
-        <output name="amount_tolerance" id="amount_tolerance" for="tolerance">0.1</output>
-    </div>
-    <br>
-    <div id="centered">
-        <input type="submit" id="button" value="Compute Isochrone" name="calculate">
-    </div>
+	
+	
+	<!--Container for the General settings-->
+	
+		<div class="row">
+			<div class="col-md-4">
+			
+			<div class="panel panel-default">
+			
+			<div class="panel-heading">
+			  <h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">General Settings
+				  
+				</a>
+			  </h4>
+			</div>
+				
+				<div id="collapseTwo" class="collapse in" role="tabpanel" aria-labelledby="headingTwo">
+				<div id="menu-part" class="row">
+					
+					
+						Select travel duration [minutes]: 
+						<!--<input type="range" id="slider" name="duration" min="5" max="20" value="5" step="5" oninput="amount_duration.value=duration.value">
+						<output name="amount_duration" id="slider" for="duration" >5</output>
+						-->
+						<br>
+						<input id="slider" name="duration" data-slider-id='sliderSlider' type="text" data-slider-min="0" data-slider-max="20" data-slider-step="5" data-slider-value="0"/>
+						<span id="sliderCurrentSliderValLabel">Minutes: <span id="sliderSliderVal">0</span></span>
+						
+						<br><br>
+						Select travel mode:
+						<input type="radio" name="travelMode" id="walking" value="walking" checked>
+						
+						<label for="walking"><span class="glyphicon glyphicon-user"></span>Walking</label>
+						
+						<input type="radio" name="travelMode" id="driving" value="driving">
+						<label for="driving"><span class="glyphicon glyphicon-road"></span>Driving</label>
+				
+				
+				
+				</div></div>
+			</div></div>
+		</div>
+	
+	<br>
+				
+	
+	
+	<!--Advanced settings collapsed menu card-->
+	<div class="row">
+		<div class="col-md-4">
+		
+		<div class="panel panel-default">
+			
+			<div class="panel-heading">
+			  <h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Advanced Settings
+				  
+				</a>
+			  </h4>
+			</div>
+		
+			<div id="accordion" role="tablist" aria-multiselectable="true">
+				<div class="card">
+					<!--<div class="card-header" role="tab" id="headingOne">
+					  <h5 class="mb-0">
+						<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						  <h3>Advanced Settings</h3>
+						</a>
+					  </h5>
+					</div>-->
+
+					<div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+						<div id="menu-part" class="card-block">
+
+							
+							Select number of angles
+							<br>
+							<!--<input type="range" id="angles" name="angles" min="12" max="48" value="12" step="12" oninput="amount_angles.value=angles.value">
+							<output name="amount_angles" id="amount_angles" for="angles">12</output>-->
+							<input id="angles" name="angles" data-slider-id='anglesSlider' type="text" data-slider-min="12" data-slider-max="48" data-slider-step="12" data-slider-value="12"/>
+							<span id="anglesCurrentSliderValLabel">Angles: <span id="anglesSliderVal">12</span></span>
+							
+						
+							<br><br>
+							
+							
+							Select tolerance
+							<br>
+							<!--<input type="range" id="tolerance" name="tolerance" min="0.1" max="1.0" value="0.1" step="0.1" oninput="amount_tolerance.value=tolerance.value">
+							<output name="amount_tolerance" id="amount_tolerance" for="tolerance">0.1</output>-->
+							<input id="tolerance" name="tolerance" data-slider-id='toleranceSlider' type="text" data-slider-min="0.1" data-slider-max="1.0" data-slider-step="0.1" data-slider-value="0.1"/>
+							<span id="toleranceCurrentSliderValLabel">Tolerance: <span id="toleranceSliderVal">0.1</span></span>
+						
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div></div>
+	</div>
+	
+	
+	<br><br>
+	<div class="row">
+		<div class="col-md-4">
+	
+			<div id="centered">
+				<!--<input type="submit" id="button" value="Compute Isochrone" name="calculate">-->
+				
+				<button id="buttonEnabled" class="btn btn-primary btn-lg">Compute Isochrone</button>
+				<button id="buttonDisabled" class="btn btn-default btn-lg" disabled style="display:none;"><i class="fa fa-refresh fa-spin"></i> Loading</button>
+				
+				
+			</div>
+			
+		</div>
+	</div>
+	
+	<!--Advanced settings panel-->
+	<!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Advanced settings</button>
+	<div id="demo" class="collapse">
+		<h3>Advanced settings</h3>
+		<div id="menu-part">
+			Select number of angles
+			<input type="range" id="angles" name="angles" min="12" max="48" value="12" step="12" oninput="amount_angles.value=angles.value">
+			<output name="amount_angles" id="amount_angles" for="angles">12</output>
+			<br>
+			Select tolerance
+			<input type="range" id="tolerance" name="tolerance" min="0.1" max="1.0" value="0.1" step="0.1" oninput="amount_tolerance.value=tolerance.value">
+			<output name="amount_tolerance" id="amount_tolerance" for="tolerance">0.1</output>
+		</div>
+		<br>
+		<div id="centered">
+			<input type="submit" id="button" value="Compute Isochrone" name="calculate">
+		</div>
+	</div>-->
+	</div>
 </form>

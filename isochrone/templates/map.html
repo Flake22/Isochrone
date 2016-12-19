@@ -27,8 +27,8 @@
 
                 if (country=="Italy" || country=="Italia") {
                     placeMarker(e.latLng);
-                    document.getElementById("latitude").value = e.latLng.lat();
-                    document.getElementById("longitude").value = e.latLng.lng();
+                    document.getElementById("latitude").value = Math.round(e.latLng.lat() *100000) / 100000;
+                    document.getElementById("longitude").value = Math.round(e.latLng.lng() *100000) / 100000;
                     //window.alert( e.latLng.lat() + ', ' + e.latLng.lng() );
                     //console.log( e.latLng.lat() + ', ' + e.latLng.lng() );
                 }
