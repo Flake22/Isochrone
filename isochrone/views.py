@@ -21,7 +21,7 @@ def parse_query_results(res):
 	w3 =int(round(res[3]*percentage))-m3					#women >=55
 	women = (w1+w2+w3)
 
-	age_and_sex = [m1, m2, m2, w1, w2, w3, women, men]
+	age_and_sex = [w1, w2, w2, m3, m2, m1, women, men]
 
 	#retrive family composition
 	family_composition=[int(round(res[7]*percentage)),		#families with 1 component
@@ -45,8 +45,10 @@ def print_to_file(rel_path, html):
 
 def index(request):
 	key = key_getter.get_key()
-	map_file = 'map.html'
-	menu_file = 'menu.html'
+	#map_file = 'map.html'
+	#menu_file = 'menu.html'
+	map_file = 'iso_map.html'
+	menu_file = 'graphs.html'
 	if request.method == "GET":
 		try:
 			#checks whether isochrone has been requested
@@ -60,29 +62,33 @@ def index(request):
 			#get isochrone and its html versrion
 			iso, map_html = isochrone_computation.compute_isochrone(latitude, longitude, duration, travelMode, angles, tolerance)
 			
+			#iso = [[[46.07287],[11.12051]],[[46.08669],[11.14825]],[[46.06501],[11.15151]],[[46.07287],[11.12051]]]
+			#map_html = ""
+
+
 			#open connection with pgadming ad run query
-			# try:
-			#	#connect to the db
-			# 	conn = db_connection.connect()
-			# 	records = db_connection.executeQuery(iso, conn)
+			try:
+				#connect to the db
+			 	conn = db_connection.connect()
+			 	records = db_connection.executeQuery(iso, conn)
 
-			# 	age_and_sex, family_composition, commuters = parse_query_results(records)
+			 	age_and_sex, family_composition, commuters = parse_query_results(records)
 
-			# 	#close connection
-			# 	conn.close()
-			# except Exception as e:
-			# 	raise
+			 	#close connection
+			 	conn.close()
+			except Exception as e:
+			 	print e
 
-			#graphs_html = graphs_generator.generate_graphs(age_and_sex, family_composition, commuters)
+			graphs_html = graphs_generator.generate_graphs(age_and_sex, family_composition, commuters)
 
 
 			#print html to file	
 			try:
 				print_to_file("templates/iso_map.html", map_html)
-				#print_to_file("templates/graphs.html", graphs_html)
+				print_to_file("templates/graphs.html", graphs_html)
 
 				map_file = 'iso_map.html'
-				#menu_file = 'graphs.html'
+				menu_file = 'graphs.html'
 			except Exception as e:
 				print e
 
