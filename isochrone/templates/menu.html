@@ -2,10 +2,10 @@
     <br>
 	
 	<!--Container for the Coordinates-->
-	<div class="container">
+	<div class="container-full form-group">
 	
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-lg-12">
 			
 				<div class="panel panel-default">
 				
@@ -18,23 +18,20 @@
 				
 				
 					<div id="menu-part">
-						Lat: 
-						<input type="text" name="latitude" id="latitude" value="empty" readonly="readonly">
+						Latitude:<input type="text" name="latitude" id="latitude" value="empty" readonly="readonly">
 						<br>
-						Long:
-						<input type="text" name="longitude" id="longitude" value="empty" readonly="readonly">
+						Longitude:<input type="text" name="longitude" id="longitude" value="empty" readonly="readonly">
 					</div>
 				</div>
 			</div>
 		</div>
 	
-    <br>
 	
 	
 	<!--Container for the General settings-->
 	
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-lg-12">
 			
 			<div class="panel panel-default">
 			
@@ -59,13 +56,12 @@
 						<span id="sliderCurrentSliderValLabel">Minutes: <span id="sliderSliderVal">0</span></span>
 						
 						<br><br>
-						Select travel mode:
-						<input type="radio" name="travelMode" id="walking" value="walking" checked>
-						
-						<label for="walking"><span class="glyphicon glyphicon-user"></span>Walking</label>
+						Select travel mode:<br>
+						<input type="radio" name="travelMode" id="walking" value="walking" checked>						
+						<label for="walking"><span class="glyphicon glyphicon-user"></span> Walking </label>
 						
 						<input type="radio" name="travelMode" id="driving" value="driving">
-						<label for="driving"><span class="glyphicon glyphicon-road"></span>Driving</label>
+						<label for="driving"><span class="glyphicon glyphicon-road"></span> Driving </label>
 				
 				
 				
@@ -73,13 +69,12 @@
 			</div></div>
 		</div>
 	
-	<br>
 				
 	
 	
 	<!--Advanced settings collapsed menu card-->
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-lg-12">
 		
 		<div class="panel panel-default">
 			
@@ -105,7 +100,7 @@
 						<div id="menu-part" class="card-block">
 
 							
-							Select number of angles
+							Select number of vertexes
 							<br>
 							<!--<input type="range" id="angles" name="angles" min="12" max="48" value="12" step="12" oninput="amount_angles.value=angles.value">
 							<output name="amount_angles" id="amount_angles" for="angles">12</output>-->
@@ -134,7 +129,8 @@
 	
 	<br><br>
 	<div class="row">
-		<div class="col-md-4">
+	
+		<div class="col-md-5 col-md-offset-2">
 	
 			<div id="centered">
 				<!--<input type="submit" id="button" value="Compute Isochrone" name="calculate">-->

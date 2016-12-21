@@ -5,4 +5,5 @@ access_type='personal'
 #crypto_key=<your crypto key>
 
 #[api]
-api_number='AIzaSyDeKGzryONoEfuxRwq6QvpnFbDvPmegxPw'
+#api_number='AIzaSyDeKGzryONoEfuxRwq6QvpnFbDvPmegxPw'
+api_number='AIzaSyDuDXJdyuORbX3YynphOlsULaW9ttS6UFU'

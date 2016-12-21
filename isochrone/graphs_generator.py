@@ -129,14 +129,14 @@ def generate_graphs(age_and_sex, family_composition, commuters):
 	g3 = create_commuters(commuters)
 
 	htmlgraphs= """
-	<form action="#" method="get">
+		<form action="#" method="get">
     <br>
 	
 	<!--Container for graph 01-->
-	<div class="container">
+	<div class="container-full form-group">
 	
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-lg-12">
 			
 				<div class="panel panel-default">
 					
@@ -149,10 +149,14 @@ def generate_graphs(age_and_sex, family_composition, commuters):
 					<div id="menu-part">
 						
 						<center>
-						<div id="canvas-holder" style="width:100%">
-    						<canvas id="chart-area-1" width="400" height="400" />
+						<div id="canvas-holder" style="width:87%">
+    						<canvas id="chart-area-1" width="400" height="550" />
 						</div>
 						</center>
+						
+						<div id="legend">
+							
+						</div>
 						
 					</div>
 				</div>
@@ -165,7 +169,7 @@ def generate_graphs(age_and_sex, family_composition, commuters):
 	
 	<!--Row for graph 02-->
 	<div class="row">
-			<div class="col-md-4">
+			<div class="col-lg-12">
 			
 				<div class="panel panel-default">
 					
@@ -179,7 +183,7 @@ def generate_graphs(age_and_sex, family_composition, commuters):
 						
 						<center>
 						<div id="canvas-holder" style="width:87%">
-    						<canvas id="chart-area-2" width="400" height="400" />
+    						<canvas id="chart-area-2" width="400" height="500" />
 						</div>
 						</center>
 						
@@ -192,7 +196,7 @@ def generate_graphs(age_and_sex, family_composition, commuters):
 		
 	<!--Row for graph 03-->
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-lg-12">
 		
 			<div class="panel panel-default">
 				
@@ -206,7 +210,7 @@ def generate_graphs(age_and_sex, family_composition, commuters):
 					
 						<center>
 						<div id="canvas-holder" style="width:87%">
-    						<canvas id="chart-area-3" width="400" height="400" />
+    						<canvas id="chart-area-3" width="400" height="500" />
 						</div>
 						</center>
 					
@@ -220,7 +224,7 @@ def generate_graphs(age_and_sex, family_composition, commuters):
 	<br>
 	
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-5 col-md-offset-2">
 	
 			<div id="centered">
 				
@@ -243,12 +247,20 @@ def generate_graphs(age_and_sex, family_composition, commuters):
 	    
 
 	htmlgraphs+="""
+	Chart.defaults.global.legend.position = 'bottom';
+	Chart.defaults.global.legend.labels.boxWidth = 3;
+	Chart.defaults.global.legend.labels.fontSize = 10;
+	Chart.defaults.global.legend.labels.padding = 3;
+	Chart.defaults.global.legend.labels.usePointStyle = true;
+	//Chart.defaults.global.legend.display = false;
 	var ctx = document.getElementById("chart-area-1").getContext("2d");
 	var myPie = new Chart(ctx, config);
 	var ctx2 = document.getElementById("chart-area-2").getContext("2d");
 	var myPie2 = new Chart(ctx2, config2);
 	var ctx3 = document.getElementById("chart-area-3").getContext("2d");
 	var myPie3 = new Chart(ctx3, config3);
+	
+	//document.getElementById('legend').innerHTML = myPi.generateLegend();
 	</script>
 	"""
 

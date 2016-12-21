@@ -54,11 +54,11 @@ def create_query(iso):
 						"famiglie AS f NATURAL JOIN ",
 						"popolazione_residente AS p NATURAL JOIN ",
 						"stranieri_residenti AS s WHERE ST_Intersects(geom, ST_GeomFromText('POLYGON(("+polygon+"))'))"])
-	print query
+	print "Query"
 	return query
 
 def connect():
-	connection = psycopg2.connect("dbname='spatial' user='postgres' host='localhost' password='pewi2709'")
+	connection = psycopg2.connect("dbname='sezioni2011_nazionale' user='postgres' host='localhost' password='toor'")
 	return connection
 
 def executeQuery(iso, connection):

@@ -5,6 +5,7 @@ import os
 import isochrone_computation
 import key_getter
 import db_connection
+import graphs_generator
 
 def parse_query_results(res):
 	#get data for computations
@@ -35,7 +36,7 @@ def parse_query_results(res):
 	commuters=[int(round(res[13]*percentage)),				#within residence town
 						int(round(res[14]*percentage))]		#outside residence town
 
-	print age_and_sex, family_composition, commuters
+	return age_and_sex, family_composition, commuters
 
 def print_to_file(rel_path, html):
 	script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in
@@ -47,8 +48,8 @@ def index(request):
 	key = key_getter.get_key()
 	#map_file = 'map.html'
 	#menu_file = 'menu.html'
-	map_file = 'iso_map.html'
-	menu_file = 'graphs.html'
+	map_file = 'map.html'
+	menu_file = 'menu.html'
 	if request.method == "GET":
 		try:
 			#checks whether isochrone has been requested
@@ -78,15 +79,17 @@ def index(request):
 			 	conn.close()
 			except Exception as e:
 			 	print e
-
+			print "connection"
 			graphs_html = graphs_generator.generate_graphs(age_and_sex, family_composition, commuters)
-
+			print "done"
 
 			#print html to file	
 			try:
 				print_to_file("templates/iso_map.html", map_html)
+				print "iso_map"
 				print_to_file("templates/graphs.html", graphs_html)
-
+				print "graphs"
+				
 				map_file = 'iso_map.html'
 				menu_file = 'graphs.html'
 			except Exception as e:
