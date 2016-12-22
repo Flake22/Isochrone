@@ -20,7 +20,7 @@ def parse_query_results(res):
 	w3 =int(round(res[2]))-m3					#women >=55
 	women = (w1+w2+w3)
 
-	age_and_sex = [w1, w2, w2, m3, m2, m1, women, men]
+	age_and_sex = [w1, w2, w3, m3, m2, m1, women, men]
 
 	#retrive family composition
 	family_composition=[int(round(res[6])),		#families with 1 component
