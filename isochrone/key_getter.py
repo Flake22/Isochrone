@@ -27,5 +27,5 @@ def get_host():
 def get_password():
 	return api.password
 
-c = "dbname='"+get_password()+"' user='"+get_user()+"' host='"+get_host()+"' passord='"+get_password()+"'"
+c = "dbname='"+get_dbname()+"' user='"+get_user()+"' host='"+get_host()+"' password='"+get_password()+"'"
 print c
