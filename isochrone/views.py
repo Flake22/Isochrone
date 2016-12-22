@@ -48,6 +48,7 @@ def escape_html(html):
 	return "{% autoescape off %}{{" + myhtml + "}}{% endautoescape %}"
 
 
+# Check if GET parameters have valid values
 def checkGetParams(latitude, longitude, duration, travelMode, angles, tolerance):
 	
 	validParams = True
@@ -81,6 +82,7 @@ def index(request):
 			angles = request.GET.get("angles", None)
 			tolerance = request.GET.get("tolerance", None)
 
+			# Check GET parameters
 			if checkGetParams(latitude, longitude, duration, travelMode, angles, tolerance):
 
 				#get isochrone and its html versrion
@@ -96,18 +98,16 @@ def index(request):
 
 				 	#close connection
 				 	conn.close()
-				except Exception as e:
-				 	print e
-				print "connection"
+				except Exception as eDB:
+				 	print eDB
+				
 				graphs_html = graphs_generator.generate_graphs(age_and_sex, family_composition, commuters)
-				print "done"
 
 				#print html to file	
 				try:
 					print_to_file("templates/iso_map.html", map_html)
-					print "iso_map"
+					
 					print_to_file("templates/graphs.html", graphs_html)
-					print "graphs"
 					
 					map_file = 'iso_map.html'
 					menu_file = 'graphs.html'
@@ -117,5 +117,4 @@ def index(request):
 		except Exception as e:
 			print e
 
-
-	return render_to_response('isochrone/index.html', {'key' : key, 'map': map_file, 'main': "main.html", 'menu': menu_file})
+	return render_to_response('isochrone/index.html', {'key' : key, 'map': map_file, 'main': "main.html", 'menu': menu_file, 'exception': e})
