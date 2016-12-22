@@ -35,26 +35,28 @@ def create_query(iso):
 	#convert WGS84 coordinates into UTM32N
 	polygon = convert_points_to_UTM32N(iso)
 	print polygon
-	query = "\n".join(["SELECT ",
-						"SUM(ST_Area(ST_GeomFromText('POLYGON(("+polygon+"))')))/SUM(ST_Area(geom)),",
-						"SUM(p.p14)+SUM(p.p15)+SUM(p.p16)+SUM(p.p17)+SUM(p.p18)+SUM(p.p19)+SUM(s.st3),",
-						"SUM(p.p20)+SUM(p.p21)+SUM(p.p22)+SUM(p.p23)+SUM(p.p24)+SUM(s.st4),",
-						"SUM(p.p25)+SUM(p.p26)+SUM(p.p27)+SUM(p.p28)+SUM(p.p29)+SUM(s.st5),",
-						"SUM(p.p30)+SUM(p.p31)+SUM(p.p32)+SUM(p.p33)+SUM(p.p34)+SUM(p.p35)+SUM(s.st6),",
-						"SUM(p.p36)+SUM(p.p37)+SUM(p.p38)+SUM(p.p39)+SUM(p.p40)+SUM(s.st7),",
-						"SUM(p.p41)+SUM(p.p42)+SUM(p.p43)+SUM(p.p44)+SUM(p.p45)+SUM(s.st8),",
-						"SUM(f.pf3),",
-						"SUM(f.pf4),",
-						"SUM(f.pf5),",
-						"SUM(f.pf6),",
-						"SUM(f.pf7),",
-						"SUM(f.pf8),",
-						"SUM(p.p137),",
-						"SUM(p.p138)",
-						"FROM spatial_ref NATURAL JOIN ",
+	query = "\n".join(["WITH abraham_simpson AS (",
+						"SELECT sez2011, (ST_Area(ST_Intersection(ST_MakeValid(ST_GeomFromText('POLYGON(("+polygon+")))')), geom))/ST_Area(geom)) AS prop",
+						"FROM spatial_ref WHERE ST_Intersects(geom, ST_GeomFromText('POLYGON(("+polygon+")))')))",
+						"SELECT",
+						"SUM((p.p14+p.p15+p.p16+p.p17+p.p18+p.p19+s.st3)*prop),",
+						"SUM((p.p20+p.p21+p.p22+p.p23+p.p24+s.st4)*prop),",
+						"SUM((p.p25+p.p26+p.p27+p.p28+p.p29+s.st5)*prop),",
+						"SUM((p.p30+p.p31+p.p32+p.p33+p.p34+p.p35+s.st6)*prop),",
+						"SUM((p.p36+p.p37+p.p38+p.p39+p.p40+s.st7)*prop),",
+						"SUM((p.p41+p.p42+p.p43+p.p44+p.p45+s.st8)*prop),",
+						"SUM((f.pf3)*prop),",
+						"SUM((f.pf4)*prop),",
+						"SUM((f.pf5)*prop),",
+						"SUM((f.pf6)*prop),",
+						"SUM((f.pf7)*prop),",
+						"SUM((f.pf8)*prop),",
+						"SUM((p.p137)*prop),",
+						"SUM((p.p138)*prop)",
+						"FROM abraham_simpson NATURAL JOIN ",
 						"famiglie AS f NATURAL JOIN ",
 						"popolazione_residente AS p NATURAL JOIN ",
-						"stranieri_residenti AS s WHERE ST_Intersects(geom, ST_GeomFromText('POLYGON(("+polygon+"))'))"])
+						"stranieri_residenti AS s"])
 	print "Query"
 	return query
 
