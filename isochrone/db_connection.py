@@ -36,8 +36,8 @@ def create_query(iso):
 	polygon = convert_points_to_UTM32N(iso)
 	print polygon
 	query = "\n".join(["WITH abraham_simpson AS (",
-						"SELECT sez2011, (ST_Area(ST_Intersection(ST_MakeValid(ST_GeomFromText('POLYGON(("+polygon+")))')), geom))/ST_Area(geom)) AS prop",
-						"FROM spatial_ref WHERE ST_Intersects(geom, ST_GeomFromText('POLYGON(("+polygon+")))')))",
+						"SELECT sez2011, (ST_Area(ST_Intersection(ST_MakeValid(ST_GeomFromText('POLYGON(("+polygon+"))')), geom))/ST_Area(geom)) AS prop",
+						"FROM spatial_ref WHERE ST_Intersects(geom, ST_MakeValid(ST_GeomFromText('POLYGON(("+polygon+"))'))))",
 						"SELECT",
 						"SUM((p.p14+p.p15+p.p16+p.p17+p.p18+p.p19+s.st3)*prop),",
 						"SUM((p.p20+p.p21+p.p22+p.p23+p.p24+s.st4)*prop),",
