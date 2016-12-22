@@ -58,7 +58,9 @@ def create_query(iso):
 	return query
 
 def connect():
-	connection = psycopg2.connect("dbname='sezioni2011_nazionale' user='postgres' host='localhost' password='toor'")
+	c = "dbname='"+key_getter.get_password()+"' user='"+key_getter.get_user()+"' host='"+key_getter.get_host()+"' passord='"+key_getter.get_password()+"'"
+	connection = psycopg2.connect(c)
+	#connection = psycopg2.connect("dbname='sezioni2011_nazionale' user='postgres' host='localhost' password='toor'")
 	return connection
 
 def executeQuery(iso, connection):

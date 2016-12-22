@@ -49,8 +49,6 @@ def escape_html(html):
 
 def index(request):
 	key = key_getter.get_key()
-	#map_file = 'map.html'
-	#menu_file = 'menu.html'
 	map_file = 'map.html'
 	menu_file = 'menu.html'
 	if request.method == "GET":

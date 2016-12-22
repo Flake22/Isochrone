@@ -7,3 +7,8 @@ access_type='personal'
 #[api]
 #api_number='AIzaSyDeKGzryONoEfuxRwq6QvpnFbDvPmegxPw'
 api_number='AIzaSyDuDXJdyuORbX3YynphOlsULaW9ttS6UFU'
+
+dbname ='sezioni2011_nazionale'
+user='postgres'
+host='localhost'
+password='toor'
