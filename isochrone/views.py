@@ -44,6 +44,9 @@ def print_to_file(rel_path, html):
 	with open(abs_file_path, 'w+') as f:
 		f.write(html)
 
+def escape_html(html):
+	return "{% autoescape off %}{{" + myhtml + "}}{% endautoescape %}"
+
 def index(request):
 	key = key_getter.get_key()
 	#map_file = 'map.html'
