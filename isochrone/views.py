@@ -70,6 +70,7 @@ def index(request):
 	key = key_getter.get_key()
 	map_file = 'map.html'
 	menu_file = 'menu.html'
+	exception_report = None
 	if request.method == "GET":
 		try:
 			#checks whether isochrone has been requested
@@ -114,5 +115,9 @@ def index(request):
 
 		except Exception as e:
 			print e
+			exception_report = e
 
-	return render_to_response('isochrone/index.html', {'key' : key, 'map': map_file, 'main': "main.html", 'menu': menu_file, 'exception': e})
+
+
+	
+	return render_to_response('isochrone/index.html', {'key' : key, 'map': map_file, 'main': "main.html", 'menu': menu_file, 'exception': exception_report})

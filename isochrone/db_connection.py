@@ -58,6 +58,7 @@ def create_query(iso):
 						"popolazione_residente AS p NATURAL JOIN ",
 						"stranieri_residenti AS s"])
 	print "Query"
+	print query
 	return query
 
 def connect():
