@@ -117,4 +117,4 @@ def index(request):
 			exception_report = e
 
 
-	return render_to_response('isochrone/index.html', {'key' : key, 'map': map_file, 'main': "main.html", 'menu': menu_file, 'exception': exception_report})
+	return render_to_response('isochrone/index.html', {'key' : key, 'map': map_file, 'main': "main.html", 'menu': menu_file, 'modal': "messageModal.html", 'exception': exception_report})
