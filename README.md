@@ -62,7 +62,6 @@ This module makes use of the following Python modules that you must have install
 * time
 * datetime
 * urlparse
-* unicodedata
 * urllib
 * urllib2
 * simplejson

@@ -3,13 +3,11 @@ from math import cos, sin, tan, sqrt, pi, radians, degrees, asin, atan2
 import time
 import datetime
 import urlparse
-import unicodedata
 import urllib
 import urllib2
 import simplejson
 import hmac
 import base64
-import unicodedata
 import hashlib
 
 import key_getter as key
@@ -164,7 +162,7 @@ def run_request(url):
 	url = normalize(url)
 
 	req = urllib2.Request(url)
-	#print url
+	
 	opener = urllib2.build_opener()
 
 	f = opener.open(req)
@@ -353,7 +351,7 @@ def generate_isochrone_map(iso, latitude, longitude):
 	google.maps.event.addDomListener(window, 'load', initMap);
 	</script>
 	"""
-	#print htmltext
+
 	return htmltext
 
 def compute_isochrone(latitude, longitude, duration, mode, angles, tolerance):

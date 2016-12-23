@@ -1,5 +1,4 @@
 from django.shortcuts import render_to_response
-from django.http import HttpResponse
 import os
 
 import isochrone_computation
@@ -118,6 +117,4 @@ def index(request):
 			exception_report = e
 
 
-
-	
 	return render_to_response('isochrone/index.html', {'key' : key, 'map': map_file, 'main': "main.html", 'menu': menu_file, 'exception': exception_report})

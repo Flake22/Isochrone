@@ -34,7 +34,7 @@ def convert_points_to_UTM32N(iso):
 def create_query(iso):
 	#convert WGS84 coordinates into UTM32N
 	polygon = convert_points_to_UTM32N(iso)
-	print polygon
+
 	query = "\n".join(["WITH abraham_simpson AS (",
 						"SELECT sez2011, (ST_Area(ST_Intersection(ST_MakeValid(ST_GeomFromText('POLYGON(("+polygon+"))')), geom))/ST_Area(geom)) AS prop",
 						"FROM spatial_ref WHERE ST_Intersects(geom, ST_MakeValid(ST_GeomFromText('POLYGON(("+polygon+"))'))))",
@@ -57,8 +57,7 @@ def create_query(iso):
 						"famiglie AS f NATURAL JOIN ",
 						"popolazione_residente AS p NATURAL JOIN ",
 						"stranieri_residenti AS s"])
-	print "Query"
-	print query
+	
 	return query
 
 def connect():
