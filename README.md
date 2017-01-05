@@ -55,7 +55,7 @@ Isochrone and information on the population that lives within the isochrone
 This module makes use of the following Python modules that you must have installed.
 
 * django
-* __future__
+* \__future\__
 * psycopg2
 * pyproj
 * math
