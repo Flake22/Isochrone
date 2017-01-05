@@ -1,15 +1,15 @@
-access_type='personal'		#either 'personal' or 'business'
+access_type='personal'
 
 #API
 
 #client_id=<your client id>
 #crypto_key=<your crypto key>
 
-api_number=<you key>
+api_number='AIzaSyDeKGzryONoEfuxRwq6QvpnFbDvPmegxPw'
 #api_number='AIzaSyDuDXJdyuORbX3YynphOlsULaW9ttS6UFU'
 
 #DB credentials
-dbname ='<your database name>'
-user='<your user name>'
-host='<your host name<>>'
-password='<your password>'
+dbname ='sezioni2011_nazionale'
+user='postgres'
+host='localhost'
+password='toor'
