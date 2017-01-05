@@ -1,9 +1,9 @@
 import os
 
-import google_maps as api
+import config as c
 
 def get_access_type():
-	return api.access_type
+	return c.access_type
 
 def get_key(): 
 	#get access type
@@ -11,21 +11,21 @@ def get_key():
 
 	#get Google Maps configuration settings
 	if access_type == 'personal':
-		return api.api_number
+		return c.api_number
 	if access_type == 'business':
 		return api.client_id
 
 def get_dbname ():
-	return api.dbname 
+	return c.dbname 
 
 def get_user():
-	return api.user
+	return c.user
 
 def get_host():
-	return api.host
+	return c.host
 
 def get_password():
-	return api.password
+	return c.password
 
 c = "dbname='"+get_dbname()+"' user='"+get_user()+"' host='"+get_host()+"' password='"+get_password()+"'"
 print c

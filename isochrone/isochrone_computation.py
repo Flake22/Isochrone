@@ -10,7 +10,7 @@ import hmac
 import base64
 import hashlib
 
-import key_getter as key
+import getter as key
 
 def settings_sanity_check(latitude, longitude, dist, mode, angles, tolerance):
 	try:

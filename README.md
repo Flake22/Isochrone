@@ -24,20 +24,20 @@ __tolerance__ : Number of minutes (scalar) that a test point can be away from __
 
 __access_type__ : Either 'personal' or 'business' (str), specifying if you are using a personal or business API access for Google Maps.
 
-  * If 'personal', you won't have access to traffic conditions. The format of the 'google_maps.py' config file must be:
+  * If 'personal', you won't have access to traffic conditions. The format of the 'config.py' config file must be:
 
 ```
 api_number=<your api number>
 ```
 
-  * If 'business', you will be able to use current traffic conditions, which will tighten your contour distance. The format of the 'google_maps.py' config file must be:
+  * If 'business', you will be able to use current traffic conditions, which will tighten your contour distance. The format of the 'config.py' config file must be:
 
 ```
 client_id=<your client id>
 crypto_key=<your crypto key>
 ```
 
-__credentials_for_database__ : list of credentials for accessing the database. The format of the 'google_maps.py' config file must be:
+__credentials_for_database__ : list of credentials for accessing the database. The format of the 'config.py' config file must be:
 
 ```
 dbname =<your db name>

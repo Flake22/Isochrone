@@ -1,6 +1,6 @@
 import psycopg2
 import pyproj
-import key_getter
+import getter
 
 def convert_points_to_UTM32N(iso):
 	# Define coordinates stadards
@@ -61,7 +61,7 @@ def create_query(iso):
 	return query
 
 def connect():
-	c = "dbname='"+key_getter.get_dbname()+"' user='"+key_getter.get_user()+"' host='"+key_getter.get_host()+"' password='"+key_getter.get_password()+"'"
+	c = "dbname='"+getter.get_dbname()+"' user='"+getter.get_user()+"' host='"+getter.get_host()+"' password='"+getter.get_password()+"'"
 	connection = psycopg2.connect(c)
 	#connection = psycopg2.connect("dbname='sezioni2011_nazionale' user='postgres' host='localhost' password='toor'")
 	return connection

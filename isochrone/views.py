@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response
 import os
 
 import isochrone_computation
-import key_getter
+import getter
 import db_connection
 import graphs_generator
 
@@ -66,7 +66,7 @@ def checkGetParams(latitude, longitude, duration, travelMode, angles, tolerance)
 
 
 def index(request):
-	key = key_getter.get_key()
+	key = getter.get_key()
 	map_file = 'map.html'
 	menu_file = 'menu.html'
 	exception_report = None
