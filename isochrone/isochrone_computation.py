@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import division
 from math import cos, sin, tan, sqrt, pi, radians, degrees, asin, atan2
 import time
@@ -9,8 +10,13 @@ import simplejson
 import hmac
 import base64
 import hashlib
+import unicodedata
+import sys 
+reload(sys) 
+sys.setdefaultencoding("utf-8")
 
 import getter as key
+
 
 def settings_sanity_check(latitude, longitude, dist, mode, angles, tolerance):
 	try:
@@ -123,38 +129,9 @@ def build_url(destination, latitude, longitude, mode):
 	
 	return full_url
 
-def normalize(url):
-    # turn string into unicode
-    if not isinstance(url,unicode):
-        url = url.decode('utf8')
-
-    # parse it
-    parsed = urlparse.urlsplit(url)
-
-    # divide the netloc further
-    userpass,at,hostport = parsed.netloc.rpartition('@')
-    user,colon1,pass_ = userpass.partition(':')
-    host,colon2,port = hostport.partition(':')
-
-    # encode each component
-    scheme = parsed.scheme.encode('utf8')
-    user = urllib.quote(user.encode('utf8'))
-    colon1 = colon1.encode('utf8')
-    pass_ = urllib.quote(pass_.encode('utf8'))
-    at = at.encode('utf8')
-    host = host.encode('idna')
-    colon2 = colon2.encode('utf8')
-    port = port.encode('utf8')
-    path = '/'.join(  # could be encoded slashes!
-        urllib.quote(urllib.unquote(pce).encode('utf8'),'')
-        for pce in parsed.path.split('/')
-    )
-    query = urllib.quote(urllib.unquote(parsed.query).encode('utf8'),'=&?/')
-    fragment = urllib.quote(urllib.unquote(parsed.fragment).encode('utf8'))
-
-    # put it back together
-    netloc = ''.join((user,colon1,pass_,at,host,colon2,port))
-    return urlparse.urlunsplit((scheme,netloc,path,query,fragment))
+def normalize(s):
+    nkfd_form = unicodedata.normalize('NFKD', unicode(s))
+    return u"".join([c for c in nkfd_form if not unicodedata.combining(c)])
 
 
 def run_request(url):

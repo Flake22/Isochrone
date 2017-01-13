@@ -109,8 +109,8 @@ def index(request):
 					
 					map_file = 'iso_map.html'
 					menu_file = 'graphs.html'
-				except Exception as e:
-					print e
+				except Exception as eG:
+					print eG
 
 		except Exception as e:
 			print e
